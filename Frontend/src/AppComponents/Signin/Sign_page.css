@@ -1,0 +1,56 @@
+.blur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("./jason-leung-poI7DelFiVA-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    opacity: 0.95;
+}
+
+.title {
+    font-family: cursive;
+    font-size: 30px;
+}
+
+.subtitle {
+    font-family: cursive;
+    margin-bottom: 20px;
+}
+
+.form-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    background-color: white;
+    color: black;
+}
+
+.submit-button {
+    width: 80%;
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+}
+
+.social-button {
+    width: 80%;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    text-transform: none;
+}

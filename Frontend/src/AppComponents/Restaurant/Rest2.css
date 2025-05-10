@@ -1,0 +1,26 @@
+
+.filter{
+    padding-top: 24px;;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding-left: 100px;
+}
+.filter .filt {
+    border-radius: 20px;
+    width: auto;
+    height: 30px;
+    border: solid 1px gray;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    padding: 0px 10px 0px 10px;
+    color: gray;
+}
+.contDisp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}

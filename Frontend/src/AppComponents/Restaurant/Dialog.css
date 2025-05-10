@@ -1,0 +1,57 @@
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 400px;
+}
+.dialog h2{
+  font-size: 20px;
+  font-family: cursive;
+}
+.dialog label{
+  margin-right: 40px;
+}
+.dialog select{
+  height: 40px;
+  width: 180px;
+}
+.dialog input{
+  margin-top: 20px;
+  height: 40px;
+
+}
+.timeings{
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-self:center;
+}
+.timeings .MuiButton-root {
+  background-color:black;
+  color: white;
+  margin: 16px;
+}
+
+.timeings.MuiButton-root:hover {
+  background-color:grey;
+}
+.button-group{
+  margin-left: 150px;
+}
+.wrong {
+  cursor: pointer;
+}

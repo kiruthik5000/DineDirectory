@@ -1,0 +1,32 @@
+.line {
+    height: 1px;
+    width: 70%;
+    background-color: grey;
+    margin: 0 auto;
+}
+.topbar {
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-bottom: 16px;
+}
+.topbar .menu {
+    height: 80px;
+    padding-left: 300px;
+    border-radius: 16px;
+    background: url('../pngs/img.png') no-repeat center/contain;
+}
+.bread {
+    cursor: pointer;
+    padding-top: 16px;
+    gap: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 100px;
+    color: gray;
+}
+.bread .cur{
+    color: black;
+}
