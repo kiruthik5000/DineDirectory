@@ -73,6 +73,7 @@ const Home = () => {
                 <TextField
                     className="search"
                     placeholder="Search for Restaurant Cuisine or a Dish"
+                    onClick={()=>navigate('/search')}
                     sx={{
                         margin: "0 40px",
                         width: "70%",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import './Topbar.css';
 const Topbar = (props) => {
     const navigate = useNavigate();
+    const [input, setInput] = useState();
     return (
         <div>
             <div className="topbar">

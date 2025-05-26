@@ -7,6 +7,7 @@ import Sign_page from "../Signin/Sign_page";
 import Rest2 from "../Restaurant/Rest2";
 import Hotel from "../Single_Cards/Hotel";
 import Profile from "../Profile/Profile";
+import Search from "../Search/Search";
 
 const Navigator = () => {
   return (
@@ -19,6 +20,7 @@ const Navigator = () => {
           <Route path="/signup" element={<Sign_page/>}></Route>
           <Route path="/list/:type" element={<Rest2/>}></Route>
           <Route path= "/hotel/:id" element={<Hotel/>}></Route>
+          <Route path="/search" element={<Search/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -39,7 +39,6 @@ const SignPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-
     try {
       const response = await axios.post("http://localhost:5000/api/users/adduser", {
         username: form.username,
