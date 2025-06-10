@@ -7,14 +7,14 @@ import {useNavigate} from "react-router-dom";
 
 const Content = (props) => {
     const navigate = useNavigate();
-    const [Booking, setBooking] = useState(null);
+    const [isbook, setIsBook] = useState(false);
     const num = props.data.id % 20;
     const imageUrl = require(`../pngs/rest${num}.png`); // Ensure images are in the public folder
     const handleBookClick = (id) => {
-        setBooking(id);  // Set the id of the restaurant to trigger dialog visibility
+        setIsBook(true)
     };
     const closeDialog = () => {
-        setBooking(null);  // Close the dialog by resetting the state
+        setIsBook(false);  // Close the dialog by resetting the state
     };
     return (
         <div className="cont">
@@ -48,9 +48,9 @@ const Content = (props) => {
                     Review
                 </Button>
             </div>
-            {Booking === props.data.id && (
-                <BookDialog onClose={closeDialog} />
-            )}
+            {isbook && 
+            <BookDialog onClose={closeDialog} />
+            }
         </div>
     );
 };

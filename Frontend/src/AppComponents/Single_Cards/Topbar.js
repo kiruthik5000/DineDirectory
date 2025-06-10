@@ -12,6 +12,7 @@ const Topbar = (props) => {
             <div className="topbar">
                 <div className="menu"></div>
                 <TextField
+                onClick={()=>navigate('/search')}
                     className="search"
                     placeholder="Search for Restaurant "
                     sx={{
