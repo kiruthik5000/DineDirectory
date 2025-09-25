@@ -1,0 +1,2 @@
+{"apiVersion":"v1","corsOrigins":["http://localhost:3000"],"environment":"development","level":"info","message":"Server running on port 5000","service":"dine-directory-backend","timestamp":"2025-09-25T13:38:50.136Z"}
+{"database":"dinedirectory","host":"localhost","level":"info","message":"MongoDB connected successfully","port":27017,"service":"dine-directory-backend","timestamp":"2025-09-25T13:38:50.192Z"}
