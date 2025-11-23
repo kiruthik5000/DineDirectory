@@ -1,5 +1,2 @@
-node_modules/
-build/
-.idea/
-.firebaserc
-.firebase/
+.idea
+node_modules
