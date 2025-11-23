@@ -17,13 +17,15 @@ const Content = (props) => {
         setIsBook(false);  // Close the dialog by resetting the state
     };
     return (
-        <div className="cont">
+        <div className="cont"
+            onClick={()=>navigate(`/hotel/${props.data.id}`)}
+            style={{cursor:'pointer'}}
+            >
             <div
                 className="photo"
                 style={{
                     backgroundImage: `url(${imageUrl})`
                 }}
-                onClick={()=>navigate(`/hotel/${props.data.id}`)}
             ></div>
             <div style={{ margin:'30px'}}>
                 <span style={{fontSize: '20px', fontWeight: 'bold' }}>{props.data.name}<br /></span>
@@ -40,13 +42,13 @@ const Content = (props) => {
 
             </div>
 
-            <div>
+            <div style={{alignContent:'right'}}>
                 <Button variant="contained" onClick={()=>handleBookClick(props.data.id)} sx={{ backgroundColor: 'black' }}>
                     Book A Table
                 </Button>
-                <Button variant="contained"  sx={{ backgroundColor: 'black', marginLeft: '10px' }}>
+                {/* <Button variant="contained"  sx={{ backgroundColor: 'black', marginLeft: '10px' }}>
                     Review
-                </Button>
+                </Button> */}
             </div>
             {isbook && 
             <BookDialog onClose={closeDialog} />

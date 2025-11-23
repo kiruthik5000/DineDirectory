@@ -12,9 +12,10 @@ const Rest2 = () => {
   const [data, setData] = useState([]);
   useEffect(()=>{
       let isMounted = true;
+      console.log(type);
       const fetchData = async () => {
           try{
-              const res = await axios.get(`http://localhost:5000/api/hotels?type=${type}`);
+              const res = await axios.get(`http://localhost:5000/api/hotels/theme/${type}`);
               if(isMounted){
                   console.log(res);
                   setData(res.data);

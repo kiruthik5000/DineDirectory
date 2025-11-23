@@ -18,6 +18,7 @@
     height: 80px;
     border-radius: 16px;
     background: url("../pngs/img.png") no-repeat center/contain;
+    cursor: pointer;
 }
 
 .right {

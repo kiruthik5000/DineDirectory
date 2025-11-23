@@ -20,7 +20,7 @@ const getall = async (req, res) => {
 
 const getByTheme = async (req, res) => {
     try{
-        const type = req.query.type
+        const type = req.params.type
         const hotels = await Hotel.find({theme:type})
         res.status(200).json(hotels);
     }catch(err){
@@ -37,4 +37,5 @@ const getById = async (req, res) => {
         res.status(500).json({message:err.message})
     }
 }
+
 module.exports = {getall, getByTheme, getById}

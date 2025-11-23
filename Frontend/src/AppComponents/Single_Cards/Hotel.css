@@ -1,95 +1,118 @@
-.container {
-    margin: 40px auto;
+/* Container */
+.hotel-page {
+    width: 100%;
+    background: #f4f4f4;
+    padding-top: 60px;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hotel-container {
     display: flex;
-    flex-wrap: wrap; /* Ensure content wraps on smaller screens */
-    padding: 0 5%;
-    justify-content: start;
-    gap: 40px;
+    gap: 30px;
+    padding: 20px 40px;
+    flex-wrap: wrap;
 }
 
-.rating-box {
+/* Left Section */
+.info-box {
     flex: 1;
-    min-width: 280px; /* Ensures proper responsiveness */
-    max-width: 400px;
-    padding: 16px;
-    border-radius: 10px;
-    border: solid 1px gray;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    min-width: 300px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.rating-box div {
+.info-row {
+    padding: 6px 0;
+    font-size: 16px;
+}
+
+.label {
+    font-weight: 600;
+    color: #444;
+}
+
+.divider {
+    height: 1px;
+    background: #ddd;
+    margin: 15px 0;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-num {
+    font-weight: bold;
+    color: #222;
+}
+
+.rating-users {
+    color: #666;
+}
+
+/* Reviews */
+.reviews-section {
+    margin-top: 10px;
+}
+
+/* Right Section */
+.right-section {
+    flex: 1.2;
+    min-width: 350px;
+}
+
+.image-box {
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hotel-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hotel-img:hover {
+    transform: scale(1.02);
+}
+
+.map-box {
     margin-top: 20px;
 }
 
-.title {
-    font-size: 24px;
-    font-family: cursive;
-    font-weight: bold;
-    word-wrap: break-word; /* Prevents text overflow */
-}
-
-.rating {
-    display: flex;
-    align-items: baseline;
-    justify-content: start;
-    gap: 20px;
-}
-.right-box{
-    display: flex;
-    justify-content: space-around;
-    width: 70%;
+.hotel-map {
+    border: none;
     border-radius: 10px;
-    border: 1px solid gray;
-    padding: 16px;
-}
-.image {
-    max-width: 500px;
-    height: 400px;
-    width: 100%;
-    position: static;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-}
-
-.image img:hover {
-    transform: scale(1.05);
-}
-
-.modal {
+/* Modal */
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure the modal appears above other content */
-    cursor: default;
+    z-index: 2000;
 }
 
 .modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    max-height: 80%;
 }
 
-.modal-content img {
+.modal-image {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: inherit;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
 }
-

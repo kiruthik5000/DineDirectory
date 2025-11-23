@@ -37,6 +37,7 @@ const Home = () => {
         { text: "Help", action: false},
     ];
     const types = ["Café", "Outdoor", "Night Outs", "Luxury"];
+    const backend_types = ['cafe', 'outdoor', 'Night outs', 'luxury']
     return (
         <div className="background">
             <div className="MenuBar">
@@ -108,7 +109,7 @@ const Home = () => {
                             <div
                                 key={idx}
                                 className={`order opt${idx + 1}`}
-                                onClick={() => navigate(`/list/${type}`)}
+                                onClick={() => navigate(`/list/${backend_types[idx]}`)}
                             ></div>
                             <p className="order-name">{type}</p>
                         </div>
