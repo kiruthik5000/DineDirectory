@@ -29,7 +29,7 @@ const Home = () => {
 
         return Array.from(uniqueNumbers);
     }
-  const  hotels = generateRandomArray(6, 1, 25); // 10 random numbers between 1 and 100
+  const  hotels = generateRandomArray(6, 1, 40); // 10 random numbers between 1 and 100
     const menuItems = [
         { text: "Profile", action:true},
         { text: "Settings", action: false },
