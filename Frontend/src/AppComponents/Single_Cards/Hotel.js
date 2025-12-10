@@ -191,7 +191,15 @@ const Hotel = () => {
                             width="100%"
                             height="220"
                             className="hotel-map"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=77.04374925877912,10.911487757417747,77.06374925877912,10.931487757417747&layer=mapnik&marker=10.921487757417747,77.05374925877912&zoom=15"
+                            src={(() => {
+                                const defaultLat = 10.921487757417747;
+                                const defaultLng = 77.05374925877912;
+                                const lat = details.locationCoordinates?.latitude || defaultLat;
+                                const lng = details.locationCoordinates?.longitude || defaultLng;
+                                const delta = 0.01;
+                                const bbox = `${lng - delta},${lat - delta},${lng + delta},${lat + delta}`;
+                                return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lng}&zoom=15`;
+                            })()}
                         ></iframe>
                     </div>
                 </div>

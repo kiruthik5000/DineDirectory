@@ -12,7 +12,11 @@ const HotelSchema = new mongoose.Schema(
         price: Number,
         phone: String,
         no_of_rating: Number,
-        theme:String
+        theme:String,
+        locationCoordinates: {
+            latitude: Number,
+            longitude: Number
+        }
     }
 )
 module.exports =  mongoose.model('Hotel', HotelSchema);
