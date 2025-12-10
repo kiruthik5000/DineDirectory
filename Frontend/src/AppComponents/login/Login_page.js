@@ -35,11 +35,14 @@ const Login_page = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/users/login?email=${details.email}&password=${details.password}`
+        `http://localhost:5000/api/users/login`,
+        { email: details.email, password: details.password }
       );
       console.log(response.data);
       if (response.status == 200) {
         localStorage.setItem("user", response.data.user.username);
+        localStorage.setItem("token", response.data.token); // Store token
+        localStorage.setItem("userData", JSON.stringify(response.data.user)); // Store full user data
         navigate(`/`);
       }
       alert(response.data.message);

@@ -44,10 +44,14 @@ const addUser = async (req, res) => {
   }
 };
 
+const jwt = require('jsonwebtoken');
+
 const userlogin = async (req, res) => {
   try {
-    const email = req.query.email;
-    const password = req.query.password;
+    // Check both body and query for backward compatibility or strict migration
+    const email = req.body.email || req.query.email;
+    const password = req.body.password || req.query.password;
+    
     const cur_user = await User.findOne({ email: email }).select('+password');
     if (!cur_user) {
       return res.status(400).json({ message: "User does not exist. Please register first." });
@@ -55,7 +59,18 @@ const userlogin = async (req, res) => {
 
     // Check password
     if (password === cur_user.password) {
-      return res.status(200).json({ message: "Login Successful", user: cur_user });
+      // Create token
+      const token = jwt.sign(
+          { _id: cur_user._id, email: cur_user.email, username: cur_user.username }, 
+          process.env.JWT_SECRET || 'secretKey', 
+          { expiresIn: '1h' }
+      );
+      
+      return res.status(200).json({ 
+          message: "Login Successful", 
+          user: cur_user,
+          token: token 
+      });
     }
     else {
           return res.status(401).json({ message: "Password does not match" });

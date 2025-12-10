@@ -27,9 +27,9 @@ const Hotel = () => {
         try {
             return [
                 require(`../pngs/rest${id % 20}.png`),
-                require(`../pngs/arab${id % 4}.png`),
-                require(`../pngs/as${id % 9}.png`),
-                require(`../pngs/cof${id % 5}.png`),
+                require(`../pngs/arab${id % 10}.png`),
+                require(`../pngs/as${id % 10}.png`),
+                require(`../pngs/cof${id % 10}.png`),
             ];
         } catch (error) {
             console.error("Image load error:", error);
@@ -106,9 +106,14 @@ const Hotel = () => {
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
         try {
+            const token = localStorage.getItem("token");
             await axios.post("http://localhost:5000/api/bookings/create", {
                 hotelId: id,
                 ...bookingData
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
             setBookingSuccess(true);
             setTimeout(() => {
@@ -143,7 +148,22 @@ const Hotel = () => {
                         color="primary" 
                         fullWidth 
                         style={{marginTop: "15px", fontWeight: "bold"}}
-                        onClick={() => setIsBookingOpen(true)}
+                        onClick={() => {
+                            const token = localStorage.getItem("token");
+                            if (!token) {
+                                alert("Please login to book a table.");
+                                window.location.href = "/login"; // Or use navigate if available
+                            } else {
+                                setIsBookingOpen(true);
+                                // Pre-fill data if available
+                                const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+                                setBookingData(prev => ({
+                                    ...prev,
+                                    customerName: userData.username || "",
+                                    customerPhone: userData.phone || ""
+                                }));
+                            }
+                        }}
                     >
                         Book a Table
                     </Button>
