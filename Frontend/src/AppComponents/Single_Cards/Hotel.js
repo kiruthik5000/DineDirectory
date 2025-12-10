@@ -92,6 +92,36 @@ const Hotel = () => {
         }
     };
 
+    // Booking state
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [bookingData, setBookingData] = useState({
+        customerName: "",
+        customerPhone: "",
+        date: "",
+        time: "",
+        numberOfGuests: 2
+    });
+    const [bookingSuccess, setBookingSuccess] = useState(false);
+
+    const handleBookingSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:5000/api/bookings/create", {
+                hotelId: id,
+                ...bookingData
+            });
+            setBookingSuccess(true);
+            setTimeout(() => {
+                setBookingSuccess(false);
+                setIsBookingOpen(false);
+                setBookingData({ customerName: "", customerPhone: "", date: "", time: "", numberOfGuests: 2 });
+            }, 2000);
+        } catch (err) {
+            console.error("Booking failed:", err);
+            alert("Failed to book table. Please try again.");
+        }
+    };
+
     if (loading) return <HotelSkeleton />;
 
     return (
@@ -107,6 +137,16 @@ const Hotel = () => {
                     <div className="info-row"><span className="label">Price:</span> ₹{details.price}</div>
                     <div className="info-row"><span className="label">Phone:</span> {details.phone}</div>
                     <div className="info-row"><span className="label">Theme:</span> {details.theme}</div>
+
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        fullWidth 
+                        style={{marginTop: "15px", fontWeight: "bold"}}
+                        onClick={() => setIsBookingOpen(true)}
+                    >
+                        Book a Table
+                    </Button>
 
                     <div className="divider"></div>
 
@@ -205,11 +245,74 @@ const Hotel = () => {
                 </div>
             </div>
 
-            {/* Full Screen Modal */}
+            {/* Image Modal */}
             {isModalOpen && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content">
                         <img src={modalImage} alt="Preview" className="modal-image" />
+                    </div>
+                </div>
+            )}
+
+            {/* Booking Modal */}
+            {isBookingOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content" style={{background: "white", padding: "20px", borderRadius: "10px", width: "400px", maxWidth: "90%"}}>
+                        <h3>Book a Table at {details.name}</h3>
+                        {bookingSuccess ? (
+                            <div style={{textAlign: "center", color: "green", padding: "20px"}}>
+                                <h3>Booking Confirmed! ✅</h3>
+                                <p>See you soon.</p>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleBookingSubmit} style={{display: "flex", flexDirection: "column", gap: "15px"}}>
+                                <TextField
+                                    label="Name"
+                                    value={bookingData.customerName}
+                                    onChange={(e) => setBookingData({...bookingData, customerName: e.target.value})}
+                                    required
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Phone Number"
+                                    value={bookingData.customerPhone}
+                                    onChange={(e) => setBookingData({...bookingData, customerPhone: e.target.value})}
+                                    required
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Date"
+                                    type="date"
+                                    InputLabelProps={{ shrink: true }}
+                                    value={bookingData.date}
+                                    onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
+                                    required
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Time"
+                                    type="time"
+                                    InputLabelProps={{ shrink: true }}
+                                    value={bookingData.time}
+                                    onChange={(e) => setBookingData({...bookingData, time: e.target.value})}
+                                    required
+                                    fullWidth
+                                />
+                                <TextField
+                                    label="Number of Guests"
+                                    type="number"
+                                    inputProps={{ min: 1, max: 20 }}
+                                    value={bookingData.numberOfGuests}
+                                    onChange={(e) => setBookingData({...bookingData, numberOfGuests: e.target.value})}
+                                    required
+                                    fullWidth
+                                />
+                                <div style={{display: "flex", justifyContent: "space-between"}}>
+                                    <Button variant="outlined" onClick={() => setIsBookingOpen(false)}>Cancel</Button>
+                                    <Button variant="contained" type="submit" color="primary">Confirm Booking</Button>
+                                </div>
+                            </form>
+                        )}
                     </div>
                 </div>
             )}

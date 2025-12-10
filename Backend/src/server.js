@@ -18,6 +18,7 @@ app.use(express.json());
 app.use('/api/users', userroutes)
 app.use('/api/hotels', hotelroutes)
 app.use('/api/reviews', reviewroutes)
+app.use('/api/bookings', require('./routes/bookingroutes'));
 
 const PORT = process.env.PORT;
 
