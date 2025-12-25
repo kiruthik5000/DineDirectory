@@ -9,9 +9,11 @@ import Hotel from "../Single_Cards/Hotel";
 import Profile from "../Profile/Profile";
 import Search from "../Search/Search";
 
+import { AuthProvider } from "../../context/AuthContext";
+
 const Navigator = () => {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -23,7 +25,7 @@ const Navigator = () => {
           <Route path="/search" element={<Search/>}></Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 };
 

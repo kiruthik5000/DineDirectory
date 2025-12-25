@@ -1,4 +1,6 @@
 const User = require("../models/users");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const getall = async (req, res) => {
   try {
@@ -32,7 +34,14 @@ const addUser = async (req, res) => {
     const exists = await is_exist(request);
 
     if (!exists) {
-      const user = new User(request);
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(request.password, salt);
+      
+      const user = new User({
+        ...request,
+        password: hashedPassword
+      });
+      
       await user.save();
       return res.status(201).json({ user, message: "User saved successfully" });
     } else {
@@ -43,8 +52,6 @@ const addUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-const jwt = require('jsonwebtoken');
 
 const userlogin = async (req, res) => {
   try {
@@ -58,7 +65,9 @@ const userlogin = async (req, res) => {
     }
 
     // Check password
-    if (password === cur_user.password) {
+    const isMatch = await bcrypt.compare(password, cur_user.password);
+
+    if (isMatch) {
       // Create token
       const token = jwt.sign(
           { _id: cur_user._id, email: cur_user.email, username: cur_user.username }, 

@@ -9,7 +9,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import HotelCard from "../Single_Cards/HotelCard";
 
 const Home = () => {
-    const username = localStorage.getItem("user");
+    const username = localStorage.getItem("username");
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();

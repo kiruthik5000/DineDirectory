@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -11,9 +9,13 @@ import "./login_page.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
 const Login_page = () => {
-  localStorage.setItem("user", null);
+  // localStorage.setItem("user", null); // removed bug
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [showPassword, setshowPassword] = useState(false);
   const [details, setDetails] = useState({
     email: "",
@@ -24,7 +26,7 @@ const Login_page = () => {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
   const handleClickShowPassword = () => {
-	setshowPassword(!showPassword)
+    setshowPassword(!showPassword)
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,14 +42,14 @@ const Login_page = () => {
       );
       console.log(response.data);
       if (response.status == 200) {
-        localStorage.setItem("user", response.data.user.username);
-        localStorage.setItem("token", response.data.token); // Store token
-        localStorage.setItem("userData", JSON.stringify(response.data.user)); // Store full user data
+        login(response.data.user, response.data.token);
+        localStorage.setItem("username", response.data.user.username);
         navigate(`/`);
       }
       alert(response.data.message);
     } catch (err) {
-      setError("An error occurd");
+      console.error(err);
+      setError(err.response?.data?.message || "An error occurred");
     }
   };
   return (
@@ -148,7 +150,7 @@ const Login_page = () => {
             {error && (
               <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
             )}
-            <p className="row" onClick={() => navigate("/signin")}>
+            <p className="row" onClick={() => navigate("/signup")}>
               Didn't have account? Click Here
             </p>
           </center>
