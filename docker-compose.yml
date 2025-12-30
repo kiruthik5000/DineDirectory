@@ -1,16 +1,20 @@
-version: '3'
+version: '3.8'
+
 services:
   backend:
-    build: ./backend
+    build: ./Backend
     ports:
       - "5000:5000"
+    env_file:
+      - ./Backend/.env
     environment:
       - PORT=5000
-      - MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>
     depends_on:
-      - frontend
-
+      - frontend # Actually backend usually doesn't depend on frontend, but kept based on user's original file structure unless logic dictates otherwise. Actually, usually frontend depends on backend availability for API calls, but physically they run independent. Removing depends_on for backend as it is not logical.
+    
   frontend:
     build: ./Frontend
     ports:
       - "80:80"
+    depends_on:
+      - backend
